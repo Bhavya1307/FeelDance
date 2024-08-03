@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2024 at 06:47 AM
+-- Generation Time: Aug 03, 2024 at 07:42 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -55,24 +55,25 @@ CREATE TABLE `classes` (
   `class_name` varchar(100) NOT NULL,
   `class_time` datetime NOT NULL,
   `video_id` varchar(255) DEFAULT NULL,
-  `deleted_at` datetime DEFAULT NULL
+  `deleted_at` datetime DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `classes`
 --
 
-INSERT INTO `classes` (`class_id`, `class_name`, `class_time`, `video_id`, `deleted_at`) VALUES
-(1, 'Bollywood', '2024-08-01 18:00:00', 'rFnoK6iuBEw', NULL),
-(2, 'Locking Popping', '2024-08-02 17:00:00', '9_LMdshcq4c', NULL),
-(3, 'Funk', '2024-08-03 19:00:00', '6XXQ5AeOE7I', NULL),
-(4, 'Old School', '2024-08-04 16:00:00', 'gaf6iwsXqMA', NULL),
-(5, 'Lyrical', '2024-08-05 18:00:00', '9RqsikviXgk', NULL),
-(6, 'Robotics', '2024-08-06 18:00:00', 'vt1w3iCX1q8', NULL),
-(7, 'Contemp', '2024-08-07 18:00:00', 'PMzzY_xIywk', NULL),
-(8, 'Krump', '2024-08-08 18:00:00', 'y4jv5bk8ato', NULL),
-(9, 'Hiphop', '2024-08-09 18:00:00', '5hLX2dJG0QE', NULL),
-(10, 'Urban', '2024-08-10 18:00:00', 'F-MS0covhlU', NULL);
+INSERT INTO `classes` (`class_id`, `class_name`, `class_time`, `video_id`, `deleted_at`, `created_at`) VALUES
+(1, 'Bollywood', '2024-08-01 18:00:00', 'rFnoK6iuBEw', NULL, '2024-08-03 05:35:57'),
+(2, 'Locking Popping', '2024-08-02 17:00:00', '9_LMdshcq4c', NULL, '2024-08-03 05:35:57'),
+(3, 'Funk', '2024-08-03 19:00:00', '6XXQ5AeOE7I', NULL, '2024-08-03 05:35:57'),
+(4, 'Old School', '2024-08-04 16:00:00', 'gaf6iwsXqMA', NULL, '2024-08-03 05:35:57'),
+(5, 'Lyrical', '2024-08-05 18:00:00', '9RqsikviXgk', NULL, '2024-08-03 05:35:57'),
+(6, 'Robotics', '2024-08-06 18:00:00', 'vt1w3iCX1q8', NULL, '2024-08-03 05:35:57'),
+(7, 'Contemp', '2024-08-07 18:00:00', 'PMzzY_xIywk', NULL, '2024-08-03 05:35:57'),
+(8, 'Krump', '2024-08-08 18:00:00', 'y4jv5bk8ato', NULL, '2024-08-03 05:35:57'),
+(9, 'Hiphop', '2024-08-09 18:00:00', '5hLX2dJG0QE', NULL, '2024-08-03 05:35:57'),
+(10, 'Urban', '2024-08-10 18:00:00', 'F-MS0covhlU', NULL, '2024-08-03 05:35:57');
 
 -- --------------------------------------------------------
 
@@ -123,28 +124,30 @@ CREATE TABLE `members` (
   `image` varchar(255) DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   `class_id` int(11) NOT NULL,
-  `allocation_deleted_at` datetime DEFAULT NULL
+  `allocation_deleted_at` datetime DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `members`
 --
 
-INSERT INTO `members` (`member_id`, `name`, `email`, `role`, `image`, `deleted_at`, `class_id`, `allocation_deleted_at`) VALUES
-(1, 'Aarav Patel', 'aarav.patel@example.com', 'Student', '1.jpg', NULL, 1, NULL),
-(2, 'Vihaan Sharma', 'vihaan.sharma@example.com', 'Student', '2.jpg', NULL, 2, NULL),
-(3, 'Isha Gupta', 'isha.gupta@example.com', 'Student', '3.jpg', NULL, 3, NULL),
-(4, 'Aanya Kapoor', 'aanya.kapoor@example.com', 'Student', '4.jpg', NULL, 4, NULL),
-(5, 'Arjun Reddy', 'arjun.reddy@example.com', 'Student', '5.jpg', NULL, 5, NULL),
-(6, 'Maya Rao', 'maya.rao@example.com', 'Student', '6.jpg', NULL, 6, NULL),
-(7, 'Reyansh Singh', 'reyansh.singh@example.com', 'Student', '7.jpg', NULL, 7, NULL),
-(8, 'Saanvi Joshi', 'saanvi.joshi@example.com', 'Student', '8.jpg', NULL, 8, NULL),
-(9, 'Vivaan Mehta', 'vivaan.mehta@example.com', 'Student', '9.jpg', NULL, 9, NULL),
-(10, 'Kavya Nair', 'kavya.nair@example.com', 'Student', '10.jpg', NULL, 10, NULL),
-(11, 'Sagar Bora', 'Sagarbora@gmail.com', 'Instructor', 'i1.jpg', NULL, 9, NULL),
-(12, 'Suresh Mukund', 'suresh@gmail.com', 'Instructor', 'i2.jpg', NULL, 8, NULL),
-(13, 'Sanket Panchal', 'sp@gmail.com', 'Instructor', 'i3.jpg', NULL, 10, NULL),
-(14, 'Dharmesh yelande', 'dyelande@gmail.com', 'Instructor', 'i4.jpg', NULL, 5, NULL);
+INSERT INTO `members` (`member_id`, `name`, `email`, `role`, `image`, `deleted_at`, `class_id`, `allocation_deleted_at`, `created_at`) VALUES
+(1, 'Aarav Patel', 'aarav.patel@example.com', 'Student', '1.jpg', NULL, 1, NULL, '2024-08-03 05:35:56'),
+(2, 'Vihaan Sharma', 'vihaan.sharma@example.com', 'Student', '2.jpg', NULL, 2, NULL, '2024-08-03 05:35:56'),
+(3, 'Isha Gupta', 'isha.gupta@example.com', 'Student', '3.jpg', NULL, 3, NULL, '2024-08-03 05:35:56'),
+(4, 'Aanya Kapoor', 'aanya.kapoor@example.com', 'Student', '4.jpg', NULL, 4, NULL, '2024-08-03 05:35:56'),
+(5, 'Arjun Reddy', 'arjun.reddy@example.com', 'Student', '5.jpg', NULL, 5, NULL, '2024-08-03 05:35:56'),
+(6, 'Maya Rao', 'maya.rao@example.com', 'Student', '6.jpg', NULL, 6, NULL, '2024-08-03 05:35:56'),
+(7, 'Reyansh Singh', 'reyansh.singh@example.com', 'Student', '7.jpg', NULL, 7, NULL, '2024-08-03 05:35:56'),
+(8, 'Saanvi Joshi', 'saanvi.joshi@example.com', 'Student', '8.jpg', NULL, 8, NULL, '2024-08-03 05:35:56'),
+(9, 'Vivaan Mehta', 'vivaan.mehta@example.com', 'Student', '9.jpg', NULL, 9, NULL, '2024-08-03 05:35:56'),
+(10, 'Kavya Nair', 'kavya.nair@example.com', 'Student', '10.jpg', NULL, 10, NULL, '2024-08-03 05:35:56'),
+(11, 'Sagar Bora', 'Sagarbora@gmail.com', 'Instructor', 'i1.jpg', NULL, 9, NULL, '2024-08-03 05:35:56'),
+(12, 'Suresh Mukund', 'suresh@gmail.com', 'Instructor', 'i2.jpg', NULL, 8, NULL, '2024-08-03 05:35:56'),
+(13, 'Sanket Panchal', 'sp@gmail.com', 'Instructor', 'i3.jpg', NULL, 10, NULL, '2024-08-03 05:35:56'),
+(14, 'Dharmesh yelande', 'dyelande@gmail.com', 'Instructor', 'i4.jpg', NULL, 5, NULL, '2024-08-03 05:35:56'),
+(15, 'Karishma Patel', 'karishmapatel273@gmail.com', 'Instructor', 'instructor1.jpeg', NULL, 8, NULL, '2024-08-03 05:38:43');
 
 --
 -- Indexes for dumped tables
@@ -200,7 +203,7 @@ ALTER TABLE `contact_messages`
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `member_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
