@@ -48,6 +48,13 @@ This is a Content Management System (CMS) for dance classes. It allows users to 
    - Start your MAMP (or any other local server)
    - Navigate to http://localhost/feeldance in your web browser
 
+## Admin Usage
+
+- Navigate to http://localhost/feeldance/admin in your web browser
+- username: feel
+- password: feel
+
+
 ## Contributors
 
 - Anant Chauhan
