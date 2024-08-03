@@ -2,15 +2,12 @@
 include '../reusable/connection.php';
 include '../includes/functions.php';
 
-// Count total members
+// Fetch counts
 $member_query = "SELECT COUNT(*) as total_members FROM members WHERE deleted_at IS NULL";
-$member_result = $conn->query($member_query);
-$total_members = $member_result->fetch_assoc()['total_members'];
+$total_members = $conn->query($member_query)->fetch_assoc()['total_members'];
 
-// Count total classes
 $class_query = "SELECT COUNT(*) as total_classes FROM classes WHERE deleted_at IS NULL";
-$class_result = $conn->query($class_query);
-$total_classes = $class_result->fetch_assoc()['total_classes'];
+$total_classes = $conn->query($class_query)->fetch_assoc()['total_classes'];
 
 include '../reusable/header-admin.php';
 ?>

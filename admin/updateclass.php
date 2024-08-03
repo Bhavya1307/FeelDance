@@ -2,15 +2,15 @@
 include '../reusable/connection.php';
 include '../includes/functions.php';
 
-// Check if the 'id' parameter is present in the URL
+// Check if 'id' is in the URL
 if (isset($_GET['id'])) {
     $class_id = mysqli_real_escape_string($conn, $_GET['id']);
 
-    // If the form is submitted
+    // Process form submission
     if (isset($_POST['updateClass'])) {
         $class_name = mysqli_real_escape_string($conn, $_POST['class_name']);
         $class_time = mysqli_real_escape_string($conn, $_POST['class_time']);
-        $video_id = mysqli_real_escape_string($conn, $_POST['video_id']); // Get the video ID
+        $video_id = mysqli_real_escape_string($conn, $_POST['video_id']);
 
         $sql = "UPDATE classes SET class_name='$class_name', class_time='$class_time', video_id='$video_id' WHERE class_id='$class_id'";
         if ($conn->query($sql) === TRUE) {
@@ -18,10 +18,10 @@ if (isset($_GET['id'])) {
             header('Location: classes.php');
             exit();
         } else {
-            set_message("Error: " . $sql . "<br>" . $conn->error, "danger");
+            set_message("Error: " . $conn->error, "danger");
         }
     } else {
-        // Fetch the class details from the database
+        // Fetch class details
         $sql = "SELECT * FROM classes WHERE class_id='$class_id' AND deleted_at IS NULL";
         $result = $conn->query($sql);
         if ($result->num_rows == 1) {
@@ -44,10 +44,7 @@ if (isset($_GET['id'])) {
 <div class="container admin-container">
     <h1 class="admin-title">Edit Class</h1>
 
-    <?php
-    // Display success or error messages
-    get_message();
-    ?>
+    <?php get_message(); ?>
 
     <form method="post" class="admin-form">
         <input type="hidden" name="updateClass" value="1">

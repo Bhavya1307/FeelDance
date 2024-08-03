@@ -2,24 +2,24 @@
 include '../reusable/connection.php';
 include '../includes/functions.php';
 
-// Initialize variables for form data
+// Form data variables
 $class_name = $class_time = $video_id = '';
 $errors = [];
 
-// Check if the form is submitted
+// Form submission check
 if (isset($_POST['addClass'])) {
-    // Assign and escape POST variables
+    // Escape POST variables
     $class_name = mysqli_real_escape_string($conn, $_POST['class_name']);
     $class_time = mysqli_real_escape_string($conn, $_POST['class_time']);
     $video_id = mysqli_real_escape_string($conn, $_POST['video_id']);
 
-    // SQL query to insert a new class
+    // SQL query to add a new class
     $query = "INSERT INTO classes (class_name, class_time, video_id) VALUES (
         '" . mysqli_real_escape_string($conn, $class_name) . "',
         '" . mysqli_real_escape_string($conn, $class_time) . "',
         '" . mysqli_real_escape_string($conn, $video_id) . "')";
 
-    // Execute the INSERT query
+    // Execute query
     if ($conn->query($query) === TRUE) {
         set_message("New class added successfully", "success");
         header('Location: classes.php');
@@ -34,7 +34,7 @@ if (isset($_POST['addClass'])) {
     <h1 class="admin-title">Add Class</h1>
 
     <?php
-    // Display success or error messages
+    // Show messages
     get_message();
     if (!empty($errors)) {
         echo '<div class="alert alert-danger">';

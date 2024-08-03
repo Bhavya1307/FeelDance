@@ -2,6 +2,7 @@
 include './reusable/header.php'; 
 include './reusable/connection.php'; 
 include './includes/functions.php'; 
+
 // Check if the form is submitted
 if (isset($_POST['submitContact'])) {
     if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['message'])) {
@@ -9,7 +10,7 @@ if (isset($_POST['submitContact'])) {
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $message = mysqli_real_escape_string($conn, $_POST['message']);
 
-        // Insert the contact message into the database
+        // Insert the message into the database
         $sql = "INSERT INTO contact_messages (name, email, message) VALUES ('$name', '$email', '$message')";
         if ($conn->query($sql) === TRUE) {
             set_message("Message sent successfully!", "success");

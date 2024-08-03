@@ -2,13 +2,13 @@
 include '../reusable/connection.php';
 include '../includes/functions.php';
 
-// Initialize variables for form data and errors
+// Form data and error variables
 $name = $email = $role = '';
 $errors = [];
 
-// Check if the form is submitted
+// Form submission check
 if (isset($_POST['addMember'])) {
-    // Assign and escape POST variables
+    // Escape POST variables
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $role = mysqli_real_escape_string($conn, $_POST['role']);
@@ -16,23 +16,23 @@ if (isset($_POST['addMember'])) {
     $target_dir = "../reusable/images/instructors/";
     $target_file = $target_dir . basename($image);
 
-    // Check if the directory exists, if not, create it
+    // Create directory if it doesn't exist
     if (!is_dir($target_dir)) {
         mkdir($target_dir, 0775, true);
     }
 
-    // Validate the image upload
+    // Validate image upload
     if ($_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        // Create SQL query to insert a new member
+        // SQL query to add a new member
         $query = "INSERT INTO members (`name`, `email`, `role`, `image`) VALUES (
             '" . mysqli_real_escape_string($conn, $name) . "',
             '" . mysqli_real_escape_string($conn, $email) . "',
             '" . mysqli_real_escape_string($conn, $role) . "',
             '" . mysqli_real_escape_string($conn, $image) . "')";
 
-        // Execute the INSERT query
+        // Execute query
         if (mysqli_query($conn, $query)) {
-            // Attempt to move the uploaded file to the target directory
+            // Move uploaded file
             if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
                 set_message('New member created successfully!', 'success');
                 header("Location: members.php");
@@ -49,14 +49,13 @@ if (isset($_POST['addMember'])) {
 }
 ?>
 
-
 <?php include '../reusable/header-admin.php'; ?>
 
 <div class="container admin-container">
     <h1 class="admin-title">Create Member</h1>
 
     <?php
-    // Display success or error messages
+    // Show messages
     get_message();
     if (!empty($errors)) {
         echo '<div class="alert alert-danger">';
@@ -93,4 +92,3 @@ if (isset($_POST['addMember'])) {
 </div>
 
 <?php include '../reusable/footer-admin.php'; ?>
-

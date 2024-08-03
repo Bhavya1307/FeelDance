@@ -2,15 +2,15 @@
 include '../reusable/connection.php';
 include '../includes/functions.php';
 
-// Check if the 'member_id' parameter is present in the URL
+// Check if 'member_id' is in the URL
 if (isset($_GET['member_id'])) {
     $member_id = mysqli_real_escape_string($conn, $_GET['member_id']);
 
-    // If the form is submitted
+    // Process form submission
     if (isset($_POST['updateAllocation'])) {
         $class_id = mysqli_real_escape_string($conn, $_POST['class_id']);
-
         $sql = "UPDATE members SET class_id='$class_id' WHERE member_id='$member_id'";
+        
         if ($conn->query($sql) === TRUE) {
             set_message("Allocation updated successfully", "success");
         } else {
@@ -19,7 +19,7 @@ if (isset($_GET['member_id'])) {
         header('Location: manageallocation.php');
         exit();
     } else {
-        // Fetch the member's current allocation details
+        // Fetch member details
         $sql = "SELECT * FROM members WHERE member_id='$member_id' AND deleted_at IS NULL";
         $result = $conn->query($sql);
         if ($result->num_rows == 1) {
@@ -30,7 +30,7 @@ if (isset($_GET['member_id'])) {
             exit();
         }
 
-        // Fetch the list of classes
+        // Fetch classes
         $sql = "SELECT * FROM classes WHERE deleted_at IS NULL";
         $classes_result = $conn->query($sql);
         $classes = [];
@@ -57,15 +57,15 @@ if (isset($_GET['member_id'])) {
         <input type="hidden" name="updateMember" value="1">
         <div class="form-group">
             <label for="member_name">Member Name</label>
-            <input type="text" class="form-control" id="member_name" name="member_name" value="<?php echo htmlspecialchars($row['name']); ?>" required>
+            <input type="text" class="form-control" id="member_name" name="member_name" value="<?php echo htmlspecialchars($member['name']); ?>" required>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($row['email']); ?>" required>
+            <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($member['email']); ?>" required>
         </div>
         <div class="form-group">
             <label for="role">Role</label>
-            <input type="text" class="form-control" id="role" name="role" value="<?php echo htmlspecialchars($row['role']); ?>" required>
+            <input type="text" class="form-control" id="role" name="role" value="<?php echo htmlspecialchars($member['role']); ?>" required>
         </div>
         <button type="submit" class="btn btn-primary">Update Member</button>
     </form>

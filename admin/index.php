@@ -1,5 +1,4 @@
 <?php
-// Include functions file and check login status
 include('../includes/functions.php');
 autoLogin();
 ?>

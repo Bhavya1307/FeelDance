@@ -42,7 +42,7 @@ $result = $conn->query($sql);
             </tr>
         </thead>
         <tbody>
-            <?php while ($row = $result->fetch_assoc()) { ?>
+            <?php while ($row = $result->fetch_assoc()): ?>
                 <tr>
                     <td><?php echo htmlspecialchars($row['member_name']); ?></td>
                     <td><?php echo htmlspecialchars($row['email']); ?></td>
@@ -71,7 +71,7 @@ $result = $conn->query($sql);
                         </div>
                     </td>
                 </tr>
-            <?php } ?>
+            <?php endwhile; ?>
         </tbody>
     </table>
 </div>

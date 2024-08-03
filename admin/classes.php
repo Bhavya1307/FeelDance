@@ -2,7 +2,7 @@
 include '../reusable/connection.php';
 include '../includes/functions.php';
 
-// Fetch classes from the database
+// Fetch classes
 $sql = "SELECT * FROM classes WHERE deleted_at IS NULL";
 $result = $conn->query($sql);
 ?>

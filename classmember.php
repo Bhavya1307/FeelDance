@@ -19,7 +19,7 @@ $result = $conn->query($sql);
 <div class="container mt-4">
 <h1>Assigned Class Members</h1>
 <?php
-// Display message if available
+
 get_message(); 
 ?>
 

@@ -3,7 +3,7 @@ include '../reusable/connection.php';
 include '../includes/functions.php';
 
 
-// Fetch members that are not soft-deleted
+// Fetch members that are not deleted
 $sql = "SELECT * FROM members WHERE deleted_at IS NULL";
 $result = $conn->query($sql);
 

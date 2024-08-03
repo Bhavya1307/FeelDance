@@ -5,10 +5,9 @@ include '../includes/functions.php';
 // Get and escape member_id from query parameter
 $member_id = mysqli_real_escape_string($conn, $_GET['id']);
 
-// SQL query to mark the member as deleted
+// Mark the member as deleted
 $sql = "UPDATE members SET deleted_at=NOW() WHERE member_id='$member_id'";
 
-// Execute the query and handle the result
 if ($conn->query($sql) === TRUE) {
     set_message("Member deleted successfully", "success");
 } else {

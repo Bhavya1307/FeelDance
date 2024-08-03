@@ -2,53 +2,41 @@
 include '../reusable/connection.php';
 include '../includes/functions.php';
 
-
-// Get member_id from query parameter and escape it
+// Get member_id from URL
 $member_id = mysqli_real_escape_string($conn, $_GET['id']);
 
 if (isset($_POST['updateMember'])) {
-    // Retrieve and escape POST data
+    // Escape POST data
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $role = mysqli_real_escape_string($conn, $_POST['role']);
     $image = $_FILES['image']['name'];
     $target = "../images/instructors/" . basename($image);
 
-    // Build the SQL query
+    // Build SQL query
+    $sql = "UPDATE members SET name='$name', email='$email', role='$role'";
     if (!empty($image)) {
-        $sql = "UPDATE members SET name='" . mysqli_real_escape_string($conn, $name) . "', 
-                                  email='" . mysqli_real_escape_string($conn, $email) . "', 
-                                  role='" . mysqli_real_escape_string($conn, $role) . "', 
-                                  image='" . mysqli_real_escape_string($conn, $image) . "' 
-                WHERE member_id='" . mysqli_real_escape_string($conn, $member_id) . "'";
-        $moveImage = true;
-    } else {
-        $sql = "UPDATE members SET name='" . mysqli_real_escape_string($conn, $name) . "', 
-                                  email='" . mysqli_real_escape_string($conn, $email) . "', 
-                                  role='" . mysqli_real_escape_string($conn, $role) . "' 
-                WHERE member_id='" . mysqli_real_escape_string($conn, $member_id) . "'";
-        $moveImage = false;
+        $sql .= ", image='$image'";
     }
+    $sql .= " WHERE member_id='$member_id'";
 
-    // Execute the query and handle the result
+    // Execute query and handle result
     if ($conn->query($sql) === TRUE) {
-        if ($moveImage) {
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-                set_message("Member updated successfully", "success");
-            } else {
-                set_message("Failed to upload image", "danger");
-            }
-        } else {
+        if (!empty($image) && move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
             set_message("Member updated successfully", "success");
+        } elseif (empty($image)) {
+            set_message("Member updated successfully", "success");
+        } else {
+            set_message("Failed to upload image", "danger");
         }
+        header('Location: members.php');
+        exit();
     } else {
         set_message("Error: " . $conn->error, "danger");
     }
-    header('Location: members.php');
-    exit();
 } else {
-    // Fetch the member's current details
-    $sql = "SELECT * FROM members WHERE member_id='" . mysqli_real_escape_string($conn, $member_id) . "'";
+    // Fetch member details
+    $sql = "SELECT * FROM members WHERE member_id='$member_id'";
     $result = $conn->query($sql);
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();

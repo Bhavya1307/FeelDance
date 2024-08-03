@@ -5,7 +5,7 @@ autoLogin();
 
 if (isset($_POST['login'])) {
     $username = $conn->real_escape_string($_POST['username']);
-    $password = md5($_POST['password']); // Consider using password_hash() and password_verify() instead
+    $password = md5($_POST['password']); // Use password_hash() and password_verify() for better security
 
     $sql = "SELECT * FROM admin WHERE username='$username' AND password='$password' LIMIT 1";
     $result = $conn->query($sql);
@@ -25,4 +25,3 @@ if (isset($_POST['login'])) {
     }
 }
 ?>
-
