@@ -26,6 +26,6 @@ This is a Content Management System (CMS) for dance classes. It allows users to 
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/dance-class-cms.git
+   git clone https://github.com/Bhavya1307/dance-class-cms.git
    ```
    
