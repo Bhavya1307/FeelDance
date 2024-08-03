@@ -30,6 +30,8 @@ if (isset($_POST['addClass'])) {
 }
 ?>
 
+<?php include '../reusable/header-admin.php'; ?>
+
 <div class="container admin-container">
     <h1 class="admin-title">Add Class</h1>
 
