@@ -47,5 +47,12 @@ This is a Content Management System (CMS) for dance classes. It allows users to 
 6. **Run the project:**
    - Start your MAMP (or any other local server)
    - Navigate to http://localhost/feeldance in your web browser
-  
-   
+
+## Contributors
+
+- Anant Chauhan
+- Anish Patel
+- Bhavya Patel
+- Karishma Patel
+
+We welcome contributions from the community! If you would like to contribute to this project, please fork the repository and submit a pull request.
