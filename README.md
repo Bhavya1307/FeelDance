@@ -26,7 +26,7 @@ This is a Content Management System (CMS) for dance classes. It allows users to 
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Bhavya1307/dance-class-cms.git
+   git clone https://github.com/Bhavya1307/FeelDance.git
    ```
 
 2. **Move the project to the htdocs directory:**
@@ -36,7 +36,7 @@ This is a Content Management System (CMS) for dance classes. It allows users to 
 
 3. **Create a database:**
    - Open phpMyAdmin (usually accessible via http://localhost/phpmyadmin)
-   - Create a new database called feeldance2
+   - Create a new database called feel_dance
 
 4. **Import the database schema:**
    - Import the database.sql file located in the project root directory into the feeldance2 database
