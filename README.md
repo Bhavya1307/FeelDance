@@ -28,4 +28,24 @@ This is a Content Management System (CMS) for dance classes. It allows users to 
    ```bash
    git clone https://github.com/Bhavya1307/dance-class-cms.git
    ```
+
+2. **Move the project to the htdocs directory:**
+   ```bash
+   mv feeldance /path-to-your-mamp/htdocs/
+   ```
+
+3. **Create a database:**
+   - Open phpMyAdmin (usually accessible via http://localhost/phpmyadmin)
+   - Create a new database called feeldance2
+
+4. **Import the database schema:**
+   - Import the database.sql file located in the project root directory into the feeldance2 database
+
+5. **Update database configuration:**
+   - Open config.php and update the database configuration with your MySQL username and password
+
+6. **Run the project:**
+   - Start your MAMP (or any other local server)
+   - Navigate to http://localhost/feeldance in your web browser
+  
    
